@@ -14,6 +14,8 @@ t = T.data;
 y = y(start_from:end);
 t = t(start_from:end);
 
+y = round(y);
+
 % x = zeros(size(y));
 % x(1) = 1;
 % my_data = iddata(y,x,1);
@@ -22,7 +24,7 @@ my_data = iddata(y,[],1);
 
 %%
 
-N = 4;
+N = 8;
 my_model = armax(my_data, [N 0]);
 
 % figure
@@ -30,7 +32,7 @@ my_model = armax(my_data, [N 0]);
 
 %%
 
-PH = 4;
+PH = 10;
 t_new = [t(end)];
 for n = 1:PH
     t_new = [t_new; t_new(end)+days(1)];
