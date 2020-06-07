@@ -34,3 +34,15 @@ ax(2) = subplot(2,1,2);
 plot(t, detection_rate*100, '-o', 'MarkerFace','w', 'MarkerSize',4)
 title('percentuale tamponi positivi')
 set(ax, 'XGrid', 'on', 'YGrid', 'on')
+
+%%
+y = T.deceduti ./ T.totale_casi *100;
+
+figure('Color','w')
+plot(t, y, '-o', 'MarkerFace','w', 'MarkerSize',4)
+title('Mortality')
+grid on
+
+
+
+
