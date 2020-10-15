@@ -31,7 +31,7 @@ t = my_t;
 
 %% select validation days
 
-validation_n = 7; % days
+validation_n = 2; % days
 
 % validation_pct = 0.2;
 % validation_n = round(length(my_data.y) * validation_pct);

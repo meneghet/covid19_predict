@@ -4,8 +4,10 @@ clc
 
 T = readtable('saved_data.csv');
 
-days_ahead = 45;
-start_from = '21-Mar-2020';
+days_ahead = 20;
+start_from = '1-Oct-2020';
+
+n = floor(days(datetime(now, 'ConvertFrom','datenum') - datetime(start_from)));
 
 %% make time
 t = T.data;
@@ -41,10 +43,11 @@ yhat(yhat<0) = nan;
 x_ = t(t1) + days(0:days_ahead);
 
 % plot
-figure('Color','w')
+f1 = figure('Color','w');
 hold on
-bar(t, y)
-plot(x_, yhat, 'r')
+l1 = bar(t, y);
+l2 = plot(x_, yhat, 'r', 'DisplayName', sprintf('Linear trend (last %g days)', n));
+legend(l2, 'Location', 'northwest')
 
 % figure settings
 grid on
@@ -73,15 +76,20 @@ yhat = m*(1:length(x)) + q;
 x_ = t(t1) + days(0:days_ahead);
 
 % plot
-figure('Color','w')
+f2 = figure('Color','w');
 hold on
-bar(t, y)
-plot(x_, yhat, 'r')
+l1 = bar(t, y);
+l2 = plot(x_, yhat, 'r', 'DisplayName', sprintf('Linear trend (last %g days)', n));
+legend(l2, 'Location', 'northwest')
 
 
 % figure settings
 grid on
 title('Nuovi contagi totali')
+
+%%
+saveas(f1, 'attualmente_positivi.png')
+saveas(f2, 'nuovi_contagi.png')
 
 
 
